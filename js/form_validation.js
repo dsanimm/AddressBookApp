@@ -1,3 +1,5 @@
+let AddressContactData = {};
+
 window.addEventListener('DOMContentLoaded', (event) => {
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error');
@@ -47,20 +49,14 @@ const save = (event) => {
 
     try {
         let AddressContactData = CreateAddressContact();
+        createAndUpdateStorage(AddressContactData);
     } catch (e) {
         return;
     }
 }
 
 const CreateAddressContact = () => {
-    let AddressContactData = new AddressContact();
-
-    try {
-        AddressContactData.name = getInputValueById('#name');
-    } catch (e) {
-        setTextValue('.text-error', e);
-        throw e;
-    }
+    AddressContactData._fullName = getInputValueById('#name');
     AddressContactData._address = getInputValueById('#address');
     AddressContactData._phoneNumber = getInputValueById('#tel');
     AddressContactData._city = getSelectedValues('#city');
@@ -84,4 +80,52 @@ const getInputValueById = (id) => {
 const getInputElementValue = (id) => {
     let value = document.getElementById(id).value;
     return value;
+}
+
+function createAndUpdateStorage(addressData) {
+    let AddressBookList = JSON.parse(localStorage.getItem("AddressBooklList"));
+    if (AddressBookList) {
+        let contactData = AddressBookList.find(addressData => addressData._id == AddressContactData._id);
+        if (!contactData) {
+            AddressBooklList.push(createAddressBookData());
+        } else {
+            const index = AddressBookList.map(addressData => addressData._id).indexOf(contactData._id);
+            AddressBookList.splice(index, 1, createAddressBookData(contactData._id));
+        }
+    } else {
+        AddressBookList = [createAddressBookData()];
+    }
+    localStorage.setItem("AddressBooklList", JSON.stringify(AddressBookList));
+
+}
+
+const createAddressBookData = (id) => {
+    let AddressData = new AddressContact();
+    if (!id) AddressData.id = createNewContactId();
+    else AddressData.id = id;
+    setAddressData(AddressData);
+    return AddressData;
+}
+
+const setAddressData = (AddressData) => {
+    try {
+        AddressData.name = AddressContactData._name;
+    } catch (e) {
+        setTextValue('.text-error', e);
+        throw e;
+    }
+    AddressData.name = AddressContactData._fullName;
+    AddressData.phoneNumber = AddressContactData._phoneNumber;
+    AddressData.address = AddressContactData._address;
+    AddressData.state = AddressContactData._state;
+    AddressData.city = AddressContactData._city;
+    AddressData.zip = AddressContactData._zip;
+    alert(AddressData.toString());
+}
+
+const createNewContactId = () => {
+    let ContactID = localStorage.getItem("ContactID");
+    ContactID = !ContactID ? 1 : (parseInt(ContactID) + 1).toString();
+    localStorage.setItem("ContactID", ContactID);
+    return ContactID;
 }
