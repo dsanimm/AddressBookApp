@@ -20,12 +20,62 @@
             </div>
         </div>
     </header>
-    <div id="form" class="form-header">
-        <div id="formId" class="form-content">
-            <div class="form-head">PERSON ADDRESS FORM</div>
-            <img class="close-img" src="../assets/pic2 (2).jpeg" alt="close Image">
+    <div id="form" class="form-content">
+        <form class="form" action="#" onsubmit="save(event)" onreset="resetForm()">
+            <div id="formId" class="form-header">
+                <div class="form-head">PERSON ADDRESS FORM</div>
+                <img class="close-img" src="../assets/pic2 (2).jpeg" alt="close Image">
 
-        </div>
+            </div>
+            <div class="row-content">
+                <label for="name" class="labeltext">Full Name</label>
+                <input type="text" class="input" id="name" name="name">
+                <error-output class="text-error" for="text"></error-output>
+            </div>
+            <div class="row-content">
+                <label for="phone" class="labeltext">Phone Number</label>
+                <input type="number" class="input" id="address" name="phone">
+                <error-output class="text-error" for="text"></error-output>
+            </div>
+            <div class="row-content">
+                <label for="address" class="labeltext">Address</label>
+                <input type="text" class="inputaddress" id="address" name="address">
+                <error-output class="text-error" for="text"></error-output>
+            </div>
+            <div class="column-content">
+                <div>
+                    <label for="city" class="labeltext">City</label>
+                    <select name="city" id="city" class="inputcolumn">
+                        <option value="" disabled selected hidden>Select City</option>
+                        <option value="Howrah">Howrah</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Murshidabad">Murshidabad</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="state" class="labeltext">State</label>
+                    <select name="state" id="state" class="inputcolumn">
+                        <option value="" disabled selected hidden>Select State</option>
+                        <option value="West Bengal">West Bengal</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Karnataka">Karnataka</option>
+                    </select>
+
+                </div>
+                <div>
+                    <label for="zipcode" class="labeltext">Zip Code</label>
+                    <input type="text" class="inputcolumn" id="zipcode" name="zipcode">
+                </div>
+                <error-output class="text-error" for="text"></error-output>
+            </div>
+            <div class="buttonParent">
+                <div class="submit-reset">
+                    <button type="submit" class="button submitButton">Add</button>
+                    <button type="reset" class="resetButton button">Reset</button>
+                </div>
+            </div>
+
+        </form>
     </div>
 
 
