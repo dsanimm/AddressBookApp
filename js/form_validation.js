@@ -46,10 +46,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 });
 const save = (event) => {
-
+    event.preventDefault();
+    event.stopPropagation();
     try {
         let AddressContactData = CreateAddressContact();
         createAndUpdateStorage(AddressContactData);
+        resetForm();
+        window.location.replace(site_properties.home_page);
     } catch (e) {
         return;
     }
@@ -128,4 +131,17 @@ const createNewContactId = () => {
     ContactID = !ContactID ? 1 : (parseInt(ContactID) + 1).toString();
     localStorage.setItem("ContactID", ContactID);
     return ContactID;
+}
+const resetForm = () => {
+    setValue('#fullname', '');
+    setValue('#address', '');
+    setValue('#tel', '');
+    setValue('#city', '');
+    setValue('#state', '');
+    setValue('#zip', '');
+}
+
+const setValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.value = value;
 }
