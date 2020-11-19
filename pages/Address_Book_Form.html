@@ -33,14 +33,14 @@
                 <error-output class="text-error" for="text"></error-output>
             </div>
             <div class="row-content">
-                <label for="phone" class="labeltext">Phone Number</label>
-                <input type="number" class="input" id="address" name="phone">
-                <error-output class="text-error" for="text"></error-output>
+                <label for="tel" class="labeltext">Phone Number</label>
+                <input type="tel" class="input" id="tel" name="tel">
+                <error-output class="phone-error" for="tel"></error-output>
             </div>
             <div class="row-content">
                 <label for="address" class="labeltext">Address</label>
                 <input type="text" class="inputaddress" id="address" name="address">
-                <error-output class="text-error" for="text"></error-output>
+                <error-output class="address-error" for="address"></error-output>
             </div>
             <div class="column-content">
                 <div>
@@ -66,7 +66,7 @@
                     <label for="zipcode" class="labeltext">Zip Code</label>
                     <input type="text" class="inputcolumn" id="zipcode" name="zipcode">
                 </div>
-                <error-output class="text-error" for="text"></error-output>
+                <error-output class="zip-error" for="zipcode"></error-output>
             </div>
             <div class="buttonParent">
                 <div class="submit-reset">
@@ -78,6 +78,8 @@
         </form>
     </div>
 
+    <script src="../js/AddressContact.js"></script>
+    <script src="../js/form_Validation.js"></script>
 
 </body>
 

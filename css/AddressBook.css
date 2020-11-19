@@ -181,3 +181,15 @@
     letter-spacing: 0px;
     color: #42515F;
 }
+
+error-output {
+    margin-left: 10px;
+    font-size: 15px;
+    font-style: Bold;
+    color: red;
+}
+
+.error-div {
+    display: flex;
+    flex-direction: row;
+}
