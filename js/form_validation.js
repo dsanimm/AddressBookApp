@@ -42,5 +42,46 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-
 });
+const save = (event) => {
+
+    try {
+        let AddressContactData = CreateAddressContact();
+    } catch (e) {
+        return;
+    }
+}
+
+const CreateAddressContact = () => {
+    let AddressContactData = new AddressContact();
+
+    try {
+        AddressContactData.name = getInputValueById('#name');
+    } catch (e) {
+        setTextValue('.text-error', e);
+        throw e;
+    }
+    AddressContactData._address = getInputValueById('#address');
+    AddressContactData._phoneNumber = getInputValueById('#tel');
+    AddressContactData._city = getSelectedValues('#city');
+    AddressContactData._state = getInputValueById('#state');
+    AddressContactData._note = getInputValueById('#zipcode');
+    alert(AddressContactData.toString());
+    return AddressContactData;
+}
+const getSelectedValues = (propertyValue) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    let selectedItems = [];
+    allItems.forEach(item => {
+        if (item.checked) selectedItems.push(item.value);
+    });
+    return selectedItems;
+}
+const getInputValueById = (id) => {
+    let value = document.querySelector(id).value;
+    return value;
+}
+const getInputElementValue = (id) => {
+    let value = document.getElementById(id).value;
+    return value;
+}
