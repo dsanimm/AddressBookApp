@@ -45,7 +45,7 @@ html body {
     display: flex;
     flex-direction: column;
     min-height: calc(100vh-80px);
-    background-color: #F7F7F7 0% 0% no-repeat padding-box;
+    background-color: #F7F7F7;
     padding: 15px 0 10px;
     box-sizing: border-box;
 }

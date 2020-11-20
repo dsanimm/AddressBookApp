@@ -1,4 +1,5 @@
 let AddressContactData = {};
+isUpdate = false;
 
 window.addEventListener('DOMContentLoaded', (event) => {
     const name = document.querySelector('#name');
