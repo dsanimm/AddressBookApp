@@ -35,6 +35,13 @@ const remove = (node) => {
     if (!addressData) return;
     const index = AddressList.map(addressData => addressData._id).indexOf(addressData._id);
     AddressList.splice(index, 1);
-    localStorage.setItem("addList", JSON.stringify(AddressList));
+    localStorage.setItem("AddressBookList", JSON.stringify(AddressList));
     createInnerHtml();
+}
+
+const update = (node) => {
+    let addressData = AddressList.find(addressData => addressData._id == node.id);
+    if (!addressData) return;
+    localStorage.setItem('AddressBookEdit', JSON.stringify(addressData));
+    window.location.replace(site_properties.add_address_contact_page);
 }

@@ -43,13 +43,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
             addressError.textContent = e;
         }
     });
+    checkForUpdate();
+
 
 });
+
+const checkForUpdate = () => {
+    const AddressBookEdit = localStorage.getItem('AddressBookEdit');
+    isUpdate = AddressBookEdit ? true : false;
+    if (!isUpdate) return;
+    AddressContactData = JSON.parse(AddressBookEdit);
+    setForm();
+}
 const save = (event) => {
     event.preventDefault();
     event.stopPropagation();
     try {
-        let AddressContactData = CreateAddressContact();
+        AddressContactData = CreateAddressContact();
         createAndUpdateStorage(AddressContactData);
         resetForm();
         window.location.replace(site_properties.home_page);
@@ -133,15 +143,23 @@ const createNewContactId = () => {
     return ContactID;
 }
 const resetForm = () => {
-    setValue('#fullname', '');
+    setValue('#name', '');
     setValue('#address', '');
     setValue('#tel', '');
     setValue('#city', '');
     setValue('#state', '');
-    setValue('#zip', '');
+    setValue('#zipcode', '');
 }
 
 const setValue = (id, value) => {
     const element = document.querySelector(id);
     element.value = value;
+}
+const setForm = () => {
+    setValue('#name', AddressContactData._fullName);
+    setValue('#address', AddressContactData._address);
+    setValue('#tel', AddressContactData._phoneNumber);
+    setValue('#city', AddressContactData._city);
+    setValue('#state', AddressContactData._state);
+    setValue('#zipcode', AddressContactData._zip);
 }
