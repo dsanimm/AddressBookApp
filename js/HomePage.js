@@ -1,13 +1,18 @@
+let AddressList;
 window.addEventListener('DOMContentLoaded', (event) => {
+    AddressList = getListFromLocalStorage();
     createInnerHtml();
 });
+const getListFromLocalStorage = () => {
+    return localStorage.getItem('AddressBookList') ? JSON.parse(localStorage.getItem('AddressBookList')) : [];
+}
 
 const createInnerHtml = () => {
     const headerHtml = "<th>Fullname</th><th>Address</th><th>City</th>" +
         "<th>State</th><th>Zip Code</th><th>Phone Number</th>";
-    let AddressBookList = createAddressBookJSON();
+    if (AddressList.length == 0) return;
     let innerHtml = `${headerHtml}`;
-    for (const addressData of AddressBookList) {
+    for (const addressData of AddressList) {
         innerHtml = `${innerHtml}
 <tr>
     <td>${addressData._fullName}</td>
@@ -24,25 +29,4 @@ const createInnerHtml = () => {
     `;
     }
     document.querySelector('#display').innerHTML = innerHtml;
-}
-
-const createAddressBookJSON = () => {
-    let addressListLocal = [{
-            _fullName: 'Deepanshu',
-            _address: 'Ghar',
-            _city: 'Howrah',
-            _state: 'Bihar',
-            _zip: '201201',
-            _phoneNumber: 9411677034,
-        },
-        {
-            _fullName: 'Ram Kabir',
-            _address: 'Bahar',
-            _city: 'Howrah',
-            _state: 'Bihar',
-            _zip: '204201',
-            _phoneNumber: 9411677056,
-        }
-    ];
-    return addressListLocal;
 }

@@ -62,9 +62,9 @@ const CreateAddressContact = () => {
     AddressContactData._fullName = getInputValueById('#name');
     AddressContactData._address = getInputValueById('#address');
     AddressContactData._phoneNumber = getInputValueById('#tel');
-    AddressContactData._city = getSelectedValues('#city');
+    AddressContactData._city = getInputValueById('#city');
     AddressContactData._state = getInputValueById('#state');
-    AddressContactData._note = getInputValueById('#zipcode');
+    AddressContactData._zip = getInputValueById('#zipcode');
     alert(AddressContactData.toString());
     return AddressContactData;
 }
@@ -86,11 +86,11 @@ const getInputElementValue = (id) => {
 }
 
 function createAndUpdateStorage(addressData) {
-    let AddressBookList = JSON.parse(localStorage.getItem("AddressBooklList"));
+    let AddressBookList = JSON.parse(localStorage.getItem("AddressBookList"));
     if (AddressBookList) {
         let contactData = AddressBookList.find(addressData => addressData._id == AddressContactData._id);
         if (!contactData) {
-            AddressBooklList.push(createAddressBookData());
+            AddressBookList.push(createAddressBookData());
         } else {
             const index = AddressBookList.map(addressData => addressData._id).indexOf(contactData._id);
             AddressBookList.splice(index, 1, createAddressBookData(contactData._id));
@@ -98,7 +98,7 @@ function createAndUpdateStorage(addressData) {
     } else {
         AddressBookList = [createAddressBookData()];
     }
-    localStorage.setItem("AddressBooklList", JSON.stringify(AddressBookList));
+    localStorage.setItem("AddressBookList", JSON.stringify(AddressBookList));
 
 }
 
@@ -112,12 +112,12 @@ const createAddressBookData = (id) => {
 
 const setAddressData = (AddressData) => {
     try {
-        AddressData.name = AddressContactData._name;
+        AddressData.fullName = AddressContactData._fullName;
     } catch (e) {
         setTextValue('.text-error', e);
         throw e;
     }
-    AddressData.name = AddressContactData._fullName;
+    AddressData.fullName = AddressContactData._fullName;
     AddressData.phoneNumber = AddressContactData._phoneNumber;
     AddressData.address = AddressContactData._address;
     AddressData.state = AddressContactData._state;
